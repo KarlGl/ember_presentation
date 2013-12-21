@@ -1,5 +1,6 @@
 <!doctype html>
 <html>
+
 <head>
   <title>Test Runner</title>
   <link rel="stylesheet" type="text/css" href="../vendor/jasmine/jasmine.css">
@@ -8,7 +9,7 @@
   <script>
   var require = {
     paths: {
-      "skeleton": "../lib/skeleton",
+      "app": "../lib/app",
       "cs": "../vendor/cs",
       "coffee-script": "../vendor/coffee-script"
     }
@@ -16,22 +17,21 @@
   </script>
   <script src="../vendor/require.js"></script>
 </head>
+
 <body>
 
-<script>
+  <script>
   require(
-  [
-    'spec/skeleton',
-    'spec/module',
-    'spec/feature',
-    'spec/cs'
-  ],
-  function() {
-    jasmine.getEnv().addReporter(new jasmine.HtmlReporter());    
-    jasmine.getEnv().execute();
-  });
-</script>
+    [
+      '../node_modules/lodash/dist/lodash',
+      'spec/app',
+    ],
+    function() {
+      jasmine.getEnv().addReporter(new jasmine.HtmlReporter());
+      jasmine.getEnv().execute();
+    });
+  </script>
 
 </body>
-</html>
 
+</html>
