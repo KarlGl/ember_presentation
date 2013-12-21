@@ -4,7 +4,7 @@ define(['app'], function(et) {
   // use jasmine to run tests against the required code
   describe('core', function() {
     it('correct html', function() {
-      expect(et.slideController.getHtml(et.slideView.slideIndex())).toEqual('test2');
+      expect(et.slideController.getHtml(et.slides, et.slideView.slideIndex())).toEqual('test2');
     });
 
     it('correct index', function() {
