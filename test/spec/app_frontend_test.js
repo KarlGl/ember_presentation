@@ -27,6 +27,7 @@ define(['../../lib/app/ember_frontend.js'], function(app) {
 
   var setupFrontend = function() {
     window.testApp.App.reset();
+    app.loadMovementsEmber([]);
   };
 
   test('loads a slide index and content by directly visiting the url with a slide index. Has correct slide count. Will show all the slides at the bottom.', function() {
@@ -35,6 +36,7 @@ define(['../../lib/app/ember_frontend.js'], function(app) {
     hasContent(find("#slideid"), 1);
     hasContent(find("#slidecontent"), 'test slide 2');
     hasContent(find("#allslide-count"), 2);
+    deepEqual(app.state.movements, [1])
     equal(find(".slide-item").length, 2, 'has all the slides in the app at the bottom.');
     hasContent(find(".slide-item").first(), 'test slide 1');
   });
