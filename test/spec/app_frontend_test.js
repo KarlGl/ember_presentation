@@ -8,7 +8,9 @@ define(['../../lib/app/ember_frontend.js'], function(app) {
       console.log(details);
       var compileSlides = function(slides) {
         return _.map(slides, function(slide) {
-          return jade.compile(slide)(details);
+          return jade.compile(slide)(_.merge(details, {
+            exampleTest: window.exampleTest
+          }));
         });
       };
       app.loadSlidesEmber(
@@ -46,7 +48,6 @@ define(['../../lib/app/ember_frontend.js'], function(app) {
   // defer readiness
   window.testApp.App.setupForTesting();
 
-
   // gives you all the helper methods like "visit".
   window.testApp.App.injectTestHelpers();
 
@@ -55,20 +56,33 @@ define(['../../lib/app/ember_frontend.js'], function(app) {
     app.loadMovementsEmber([]);
   };
 
-  test('clicking a slide makes it the main slide, and changes the active classes.', function() {
+  window.exampleTest = function() {
+    /* Test that clicking a slide will show it, 
+      / and changes the active classes at the bottom. */
+    // Custom function to reset any state.
     setupFrontend();
+    // goto url for first slide.
     visit('/0');
-    expect(5);
+    // Make sure all assertions run in the wait promise.
+    expect(6);
+    // has content of first slide.
     hasContent(find("#slidecontent"), 'test slide 1');
-    ok(find(".slide-item-cont").first().hasClass('active'), '1st slide will be active.');
-    ok(!find(".slide-item-cont").last().hasClass('active'), '2nd slide will be inactive.');
+    ok(find(".slide-item-cont").first().hasClass('active'),
+      '1st slide will be active.');
+    ok(!find(".slide-item-cont").last().hasClass('active'),
+      '2nd slide will be inactive.');
 
     click('.slide-item-cont:last');
     wait().then(function() {
       hasContent(find("#slidecontent"), 'test slide 2');
-      ok(find(".slide-item-cont").last().hasClass('active'), '2nd slide will be active.');
-    })
-  });
+      ok(find(".slide-item-cont").last().hasClass('active'),
+        '2nd slide will be active.');
+      ok(!find(".slide-item-cont").first().hasClass('active'),
+        '1st slide will be inactive.');
+    });
+  };
+  test('Clicking a slide will show it, and changes the active classes at the bottom.', window.exampleTest);
+
 
   test('loads a slide index and content by directly visiting the url with a slide index. Has correct slide count. Will show all the slides at the bottom. Class will be active.', function() {
     setupFrontend();

@@ -2,6 +2,9 @@ body {
   background-color: black;
   color: white;
 }
+pre {
+  text-align: left;
+}
 .ember-application #ember-talk {
   padding: 50px;
 }
@@ -41,4 +44,5 @@ body {
   height: 128px;
   zoom: 0.5;
   font-size: 6px;
+  overflow: scroll;
 }
