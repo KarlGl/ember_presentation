@@ -11,7 +11,7 @@ define(['app'], function(et) {
 
 
   describe('Ember related tests', function() {
-    it('can create app', function() {
+    it('has create app function', function() {
       expect(et.frontend.hasOwnProperty(
         'createApp')).toBe(true);
     });
@@ -24,13 +24,8 @@ define(['app'], function(et) {
 
 
 
-
-
-
-
-
   // use jasmine to run tests against the required code
-  describe('app', function() {
+  describe('Core', function() {
 
     it('has frontend', function() {
       expect(et.hasOwnProperty(
