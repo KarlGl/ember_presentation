@@ -1,12 +1,19 @@
 // load the entire module/library and pass to the test
 define(['../../lib/app/ember_frontend.js'], function(app) {
-  window.app = app;
-
   QUnit.done(function() {
-    app.loadSlidesEmber(['test slide 1', 'test slide 2']);
-    app.loadMovementsEmber([0]);
-    Ember.run(function() {
-      testApp.App.Router.router.transitionTo('slide', 0)
+    require(['../slides.js'], function(slides) {
+      window.testApp.App.reset();
+      window.slides = slides
+      app.loadSlidesEmber(slides);
+      app.loadMovementsEmber([0]);
+      Ember.run(function() {
+        testApp.App.Router.router.transitionTo('slide', 0)
+      });
+
+      // urls work again after tests!!.
+      window.testApp.App.Router.reopen({
+        location: 'hash'
+      });
     });
   });
 
@@ -29,6 +36,7 @@ define(['../../lib/app/ember_frontend.js'], function(app) {
 
   // defer readiness
   window.testApp.App.setupForTesting();
+
 
   // gives you all the helper methods like "visit".
   window.testApp.App.injectTestHelpers();
@@ -56,10 +64,14 @@ define(['../../lib/app/ember_frontend.js'], function(app) {
   test('loads a slide index and content by directly visiting the url with a slide index. Has correct slide count. Will show all the slides at the bottom. Class will be active.', function() {
     setupFrontend();
     visit('/1');
+    expect(7);
     hasContent(find("#slideid"), 1);
     hasContent(find("#slidecontent"), 'test slide 2');
     hasContent(find("#allslide-count"), 2);
-    deepEqual(app.state.movements, [1])
+
+    wait().then(function() {
+      deepEqual(app.state.movements, [1])
+    });
     equal(find(".slide-item").length, 2, 'has all the slides in the app at the bottom.');
     hasContent(find(".slide-item").first(), 'test slide 1');
     ok(find(".slide-item-cont").last().hasClass('active'), 'Class will be active.');
@@ -91,4 +103,6 @@ define(['../../lib/app/ember_frontend.js'], function(app) {
     });
     equal(app.state.movements[0], 1);
   });
+
+  return app;
 });

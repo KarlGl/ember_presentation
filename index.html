@@ -2,8 +2,9 @@
 <html>
 
 <head>
-  <title>Talk</title>
+  <title>Ember Talk</title>
   <link rel="stylesheet" type="text/css" href="./app.css">
+  <!-- <link rel="stylesheet" type="text/css" href="./bower_components/qunit/qunit/qunit.css"> -->
   <script src="./vendor/require.js"></script>
 </head>
 
@@ -17,23 +18,24 @@
   <script>
   require(
     [
-      './node_modules/lodash/lodash',
+      './node_modules/lodash/lodash.js',
       './bower_components/jquery/jquery.js',
       './bower_components/handlebars/handlebars.js',
       './bower_components/ember/ember.js',
       './bower_components/qunit/qunit/qunit.js',
+      // './test/spec/core_test',
     ],
-    function(l, app) {
+    function() {
+      QUnit.config.autostart = false;
       require(['./lib/app.js'], function(app) {
         window.apps = [app];
-        QUnit.config.autostart = false;
         // Shortcut.
         window.app = window.apps[0];
         app.frontend.createApp(app);
-        // QUnit.start();
 
         require(['./slides.js'], function(slides) {
           app.loadSlidesEmber(slides);
+
         });
       });
     });

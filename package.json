@@ -1,14 +1,11 @@
 {
-  "name": "ember talk",
+  "name": "ember_talk",
   "description": "",
   "version": "0.1.0",
   "homepage": "",
   "author": {
     "name": "Karl Glaser"
   },
-  "licenses": [{
-    "type": "MIT",
-  }],
   "repository": {
     "type": "git",
     "url": ""
@@ -16,23 +13,14 @@
   "engines": {
     "node": ">=0.6.0"
   },
-  "keywords": [
-    "requirejs",
-    "library",
-    "boilerplate",
-    "skeleton",
-    "template"
-  ],
   "dependencies": {
     "lodash": "~2.4.1",
-  },
-  "scripts": {
-    "test": "grunt test"
+    "jade": "~1.0.2"
   },
   "devDependencies": {
     "grunt": "~0.3.11",
     "grunt-contrib": "*",
     "grunt-jasmine-task": "*",
     "servedir": "*"
-  },
+  }
 }
