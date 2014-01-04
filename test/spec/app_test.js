@@ -28,7 +28,7 @@ define(['../../lib/app.js'], function(app) {
     window.App.reset();
   };
 
-  test('loads our app', function() {
+  test('loads a slide index and content by directly visiting the url by index', function() {
     setupFrontend();
     visit('/1');
     hasContent(find("#slideid"), 1);
