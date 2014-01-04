@@ -13,11 +13,12 @@ define(['app'], function(et) {
   // gives you all the helper methods like "vistest".
   window.App.injectTestHelpers();
 
-  QUnit.testStart(function() {
+  var setupFrontend = function() {
     window.App.reset();
-  });
+  };
 
   test('loads our app', function() {
+    setupFrontend();
     visit('/1');
     ok(find('#outer-cont'));
   });
