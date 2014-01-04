@@ -17,13 +17,18 @@ define(['app'], function(et) {
     window.App.reset();
   });
 
-  test('loads our tests', function() {
-    // visit('/');
-    ok(true);
+  test('loads our app', function() {
+    visit('/1');
+    ok(find('#outer-cont'));
   });
 
 
-  module('Frontend tests');
+  module('Ember Specific tests');
+  var controller = {
+    set: function(key, val) {
+      this[key] = val;
+    }
+  }
   test('has create app function', function() {
     ok(et.frontend.hasOwnProperty(
       'createApp'));
@@ -31,6 +36,12 @@ define(['app'], function(et) {
 
   test('loads Ember', function() {
     notEqual(Ember, undefined);
+  });
+
+  test('frontend has route that sets the slide id on the controller', function() {
+    equal(et.frontend.route.setupController(controller, {
+      id: 1
+    }).slide_id, 1);
   });
 
 
