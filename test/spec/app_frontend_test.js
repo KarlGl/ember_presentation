@@ -1,13 +1,22 @@
 // load the entire module/library and pass to the test
 define(['../../lib/app/ember_frontend.js'], function(app) {
-  QUnit.done(function() {
+  QUnit.done(function(details) {
     require(['../slides.js'], function(slides) {
       window.testApp.App.reset();
       window.slides = slides
-      app.loadSlidesEmber(slides);
+      console.log("test details");
+      console.log(details);
+      var compileSlides = function(slides) {
+        return _.map(slides, function(slide) {
+          return jade.compile(slide)(details);
+        });
+      };
+      app.loadSlidesEmber(
+        compileSlides(slides),
+        details);
       app.loadMovementsEmber([0]);
       Ember.run(function() {
-        testApp.App.Router.router.transitionTo('slide', 0)
+        testApp.App.Router.router.transitionTo('slide', 0);
       });
 
       // urls work again after tests!!.
