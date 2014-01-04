@@ -78,23 +78,23 @@ define(['../../lib/app.js'], function(app) {
   });
 
   test('correct html', function() {
-    equal(app.slideController.getHtml(app.slides, app.slideView.slideIndex()), 'test2');
+    equal(app.slideController.getHtml(app.slides, app.slideController.curSlideIndex()), 'test2');
   });
 
   test('correct index', function() {
     equal(app.slideController.getIndex(
-        app.slideView.movementFunctions()),
+        app.slideController.allMovementFunctions()),
       1);
   });
 
   test('correct index with initial', function() {
     equal(app.slideController.getIndex(
-        app.slideView.movementFunctions(), 2),
+        app.slideController.allMovementFunctions(), 2),
       3);
   });
 
-  test('view has movement functions', function() {
-    equal(app.slideView.movementFunctions()[0],
+  test('has all movement functions', function() {
+    equal(app.slideController.allMovementFunctions()[0],
       app.directions['right']);
   });
 
