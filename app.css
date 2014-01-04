@@ -5,6 +5,10 @@ body {
 .ember-application #ember-talk {
   padding: 50px;
 }
+#ember-talk .slide-item-cont {
+  display: inline-block;
+  position: relative;
+}
 #ember-talk .slidehtml {
   border: 1px solid white;
   text-align: center;
@@ -17,7 +21,13 @@ body {
   display: block;
   clear: both;
 }
+#ember-talk .slide-number {
+  position: absolute;
+  left: 5px;
+  top: 2px;
+}
 #ember-talk .slide-item {
+  float: left;
   display: inline-block;
   width: 256px;
   height: 128px;
