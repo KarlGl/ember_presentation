@@ -2,16 +2,19 @@
 define(['app'], function(et) {
 
   describe('Ember related tests', function() {
-    it('creates ember app', function() {
-      window.App = Ember.Application.create();
-    });
 
     it('loads Ember', function() {
       expect(Ember).toNotBe(undefined);
     });
   });
+
   // use jasmine to run tests against the required code
   describe('app', function() {
+
+    it('has frontend', function() {
+      expect(et.hasOwnProperty(
+        'frontend')).toBe(true);
+    });
 
     it('correct html', function() {
       expect(et.slideController.getHtml(et.slides, et.slideView.slideIndex())).toEqual('test2');
