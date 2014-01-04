@@ -4,7 +4,7 @@ define(['../../lib/app.js'], function(app) {
 
   QUnit.done(function(details) {
     require(['../slides.js'], function(slides) {
-      app.loadSlides(slides, details);
+      app.loadSlidesEmber(slides, details);
     });
   });
 
@@ -15,7 +15,7 @@ define(['../../lib/app.js'], function(app) {
 
   module('Integration', {
     setup: function() {
-      app.loadSlides(['test slide 1', 'test slide 2']);
+      app.loadSlidesEmber(['test slide 1', 'test slide 2']);
     }
   });
   window.testApp = {};
@@ -51,6 +51,10 @@ define(['../../lib/app.js'], function(app) {
       this[key] = val;
     }
   }
+  test('can load slides', function() {
+    app.loadSlidesEmber(['foo']);
+    equal(app.state.slides[0], 'foo');
+  });
   test('has create app function', function() {
     ok(app.frontend.hasOwnProperty(
       'createApp'));
@@ -74,10 +78,10 @@ define(['../../lib/app.js'], function(app) {
     setup: function() {
       // prepare something for all following tests
       /* Event stream of all slide movements */
-      app.movements = ['right', 'left', 'right'];
+      app.state.movements = ['right', 'left', 'right'];
 
       /* Slides */
-      app.loadSlides(['test', 'test2', 'test3']);
+      app.loadSlidesEmber(['test', 'test2', 'test3']);
     }
   });
 
@@ -87,7 +91,7 @@ define(['../../lib/app.js'], function(app) {
   });
 
   test('correct html', function() {
-    equal(app.slideController.getHtml(app.slides, app.slideController.curSlideIndex()), 'test2');
+    equal(app.slideController.getHtml(app.state.slides, app.slideController.curSlideIndex()), 'test2');
   });
 
   test('correct index', function() {
@@ -109,10 +113,10 @@ define(['../../lib/app.js'], function(app) {
 
   test('should have move functions', function() {
     equal(app.slideController.movementFunctions(
-      app.movements, app.directions
+      app.state.movements, app.directions
     )[0], app.directions['right']);
     equal(app.slideController.movementFunctions(
-      app.movements, app.directions
+      app.state.movements, app.directions
     )[1], app.directions['left']);
   });
 
