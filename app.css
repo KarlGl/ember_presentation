@@ -1,7 +1,16 @@
+body {
+  background-color: black;
+  color: white;
+}
 .ember-application #ember-talk {
   padding: 50px;
 }
 #ember-talk #mainslide {
   margin-bottom: 2em;
-  padding-left: 3%;
+  border: 1px solid white;
+  display: block;
+  clear: both;
+  text-align: center;
+  padding: 1em;
+  margin-top: 5px;
 }
