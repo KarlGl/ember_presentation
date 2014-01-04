@@ -1,8 +1,18 @@
 // load the entire module/library and pass to the test
 define(['app'], function(et) {
 
+  describe('Ember related tests', function() {
+    it('creates ember app', function() {
+      window.App = Ember.Application.create();
+    });
+
+    it('loads Ember', function() {
+      expect(Ember).toNotBe(undefined);
+    });
+  });
   // use jasmine to run tests against the required code
-  describe('core', function() {
+  describe('app', function() {
+
     it('correct html', function() {
       expect(et.slideController.getHtml(et.slides, et.slideView.slideIndex())).toEqual('test2');
     });
@@ -12,7 +22,7 @@ define(['app'], function(et) {
         et.slideView.movementFunctions())).toEqual(1);
     });
 
-    it('viewHasFunctions', function() {
+    it('view has movement functions', function() {
       expect(et.slideView.movementFunctions()[0]).toEqual(
         et.directions['right']);
     });
@@ -25,12 +35,13 @@ define(['app'], function(et) {
         et.movements, et.directions
       )[1]).toEqual(et.directions['left']);
     });
-    it('should have dirs', function() {
+
+    it('should have directions to move', function() {
       expect(et.directions.hasOwnProperty('left')).toBe(true);
       expect(et.directions.hasOwnProperty('right')).toBe(true);
     });
 
-    it('should be accessible', function() {
+    it('should be accessible from a varialbe', function() {
       expect(et).toNotBe(null);
     });
 

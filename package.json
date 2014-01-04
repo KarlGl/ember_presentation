@@ -27,7 +27,8 @@
     "template"
   ],
   "dependencies": {
-    "lodash": "~2.4.1"
+    "lodash": "~2.4.1",
+    "ember": "~1.0.0-pre.2"
   },
   "scripts": {
     "test": "grunt test"
