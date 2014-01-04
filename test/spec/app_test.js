@@ -28,12 +28,13 @@ define(['../../lib/app.js'], function(app) {
     window.App.reset();
   };
 
-  test('loads a slide index and content by directly visiting the url with a slide index. Has correct slide count.', function() {
+  test('loads a slide index and content by directly visiting the url with a slide index. Has correct slide count. Will show all the slides at the bottom.', function() {
     setupFrontend();
     visit('/1');
     hasContent(find("#slideid"), 1);
     hasContent(find("#slidecontent"), 'test slide 2');
     hasContent(find("#allslide-count"), 2);
+    equal(find(".slide-item").length, 2, 'has all the slides in the app at the bottom.');
   });
 
 
