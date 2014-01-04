@@ -1,0 +1,44 @@
+<!doctype html>
+<html>
+
+<head>
+  <title>Talk</title>
+  <link rel="stylesheet" type="text/css" href="./app.css">
+  <script src="./vendor/require.js"></script>
+</head>
+
+<body>
+
+  <div id="app"></div>
+
+  <!-- <div id="qunit"></div> -->
+  <!-- <div id="qunit-fixture"></div> -->
+
+  <script>
+  require(
+    [
+      './node_modules/lodash/lodash',
+      './bower_components/jquery/jquery.js',
+      './bower_components/handlebars/handlebars.js',
+      './bower_components/ember/ember.js',
+      './bower_components/qunit/qunit/qunit.js',
+    ],
+    function(l, app) {
+      require(['./lib/app.js'], function(app) {
+        window.apps = [app];
+        QUnit.config.autostart = false;
+        // Shortcut.
+        window.mainApp = window.apps[0];
+        app.frontend.createApp(mainApp);
+        // QUnit.start();
+
+        require(['./slides.js'], function(slides) {
+          app.loadSlidesEmber(slides);
+        });
+      });
+    });
+  </script>
+
+</body>
+
+</html>

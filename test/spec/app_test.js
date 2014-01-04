@@ -2,12 +2,6 @@
 define(['../../lib/app.js'], function(app) {
   window.app = app;
 
-  QUnit.done(function(details) {
-    require(['../slides.js'], function(slides) {
-      app.loadSlidesEmber(slides, details);
-    });
-  });
-
   // testHelpers
   var hasContent = function(selector, content) {
     return ok(selector.text().indexOf(content) > 0, 'has content ' + content);
@@ -27,7 +21,7 @@ define(['../../lib/app.js'], function(app) {
   // defer readiness
   window.testApp.App.setupForTesting();
 
-  // gives you all the helper methods like "vistest".
+  // gives you all the helper methods like "visit".
   window.testApp.App.injectTestHelpers();
 
   var setupFrontend = function() {
