@@ -62,7 +62,14 @@ define(['app'], function(et) {
 
   test('correct index', function() {
     equal(et.slideController.getIndex(
-      et.slideView.movementFunctions()), 1);
+        et.slideView.movementFunctions()),
+      1);
+  });
+
+  test('correct index with initial', function() {
+    equal(et.slideController.getIndex(
+        et.slideView.movementFunctions(), 2),
+      3);
   });
 
   test('view has movement functions', function() {
