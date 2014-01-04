@@ -43,11 +43,18 @@ p Passed:\n\
 p Time:\n\
 = ' ' + runtime + 'ms' \n\
 ",
-    //     "\
-    // h3 Time for some crazy shit!!:\n\
-    // ",
-    //     "\
-    // h3 What happens if I do this?\n\
-    // ",
+    "\
+h1 QUnit:\n\
+p Has the start() and stop() functions you need for testing async in ember out of the box.\n\
+p Initially I was using jasmine, but decided to switch to qunit instead of implementing those functions for jasmine myself. I like jasmine more than qunit though (spies, nesting, clearer syntax).\n\
+",
+    "\
+h3 Time for some crazy shit!!:\n\
+",
+    "\
+h3 What happens if I?\n\
+p call Ember.Application.create inside one of my slides?\n\
+iframe.frame(src='./runner.html#/0') \n\
+",
   ];
 });
