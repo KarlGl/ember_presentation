@@ -8,6 +8,7 @@ body {
 #ember-talk .slide-item-cont {
   display: inline-block;
   position: relative;
+  padding-left: 14px;
 }
 #ember-talk .slidehtml {
   border: 1px solid white;
@@ -23,7 +24,7 @@ body {
 }
 #ember-talk .slide-number {
   position: absolute;
-  left: 5px;
+  left: 4px;
   top: 2px;
 }
 #ember-talk .slide-item {
