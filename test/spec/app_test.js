@@ -2,6 +2,11 @@
 define(['../../lib/app.js'], function(app) {
   window.app = app;
 
+  QUnit.done(function(details) {
+    require(['../slides.js'], function(slides) {
+      app.loadSlides(slides, details);
+    });
+  });
 
   // testHelpers
   var hasContent = function(selector, content) {
@@ -10,22 +15,23 @@ define(['../../lib/app.js'], function(app) {
 
   module('Integration', {
     setup: function() {
-      app.slides = ['test slide 1', 'test slide 2'];
+      app.loadSlides(['test slide 1', 'test slide 2']);
     }
   });
-  app.frontend.createApp(window);
+  window.testApp = {};
+  app.frontend.createApp(window.testApp);
 
   // use my testing element on the runner.html page.
-  window.App.rootElement = '#frontend-integration-test';
+  window.testApp.App.rootElement = '#frontend-integration-test';
 
   // defer readiness
-  window.App.setupForTesting();
+  window.testApp.App.setupForTesting();
 
   // gives you all the helper methods like "vistest".
-  window.App.injectTestHelpers();
+  window.testApp.App.injectTestHelpers();
 
   var setupFrontend = function() {
-    window.App.reset();
+    window.testApp.App.reset();
   };
 
   test('loads a slide index and content by directly visiting the url with a slide index. Has correct slide count. Will show all the slides at the bottom.', function() {
@@ -35,6 +41,7 @@ define(['../../lib/app.js'], function(app) {
     hasContent(find("#slidecontent"), 'test slide 2');
     hasContent(find("#allslide-count"), 2);
     equal(find(".slide-item").length, 2, 'has all the slides in the app at the bottom.');
+    hasContent(find(".slide-item").first(), 'test slide 1');
   });
 
 
@@ -70,7 +77,7 @@ define(['../../lib/app.js'], function(app) {
       app.movements = ['right', 'left', 'right'];
 
       /* Slides */
-      app.slides = ['test', 'test2', 'test3'];
+      app.loadSlides(['test', 'test2', 'test3']);
     }
   });
 

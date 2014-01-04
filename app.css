@@ -5,12 +5,21 @@ body {
 .ember-application #ember-talk {
   padding: 50px;
 }
-#ember-talk #mainslide {
-  margin-bottom: 2em;
+#ember-talk .slidehtml {
   border: 1px solid white;
-  display: block;
-  clear: both;
   text-align: center;
   padding: 1em;
+  margin: 0px 5px;
   margin-top: 5px;
+}
+#ember-talk #mainslide {
+  margin-bottom: 2em;
+  display: block;
+  clear: both;
+}
+#ember-talk .slide-item {
+  display: inline-block;
+  width: 256px;
+  height: 256px;
+  zoom: 0.3;
 }
