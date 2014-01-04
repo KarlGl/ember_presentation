@@ -1,8 +1,19 @@
 // load the entire module/library and pass to the test
-define(['../../lib/app.js'], function(et) {
+define(['../../lib/app.js'], function(app) {
+  window.app = app;
 
-  module('Integration');
-  et.frontend.createApp(window);
+
+  // testHelpers
+  var hasContent = function(selector, content) {
+    return ok(selector.text().indexOf(content) > 0, 'has content ' + content);
+  };
+
+  module('Integration', {
+    setup: function() {
+      app.slides = ['test slide 1', 'test slide 2'];
+    }
+  });
+  app.frontend.createApp(window);
 
   // use my testing element on the runner.html page.
   window.App.rootElement = '#frontend-integration-test';
@@ -20,7 +31,7 @@ define(['../../lib/app.js'], function(et) {
   test('loads our app', function() {
     setupFrontend();
     visit('/1');
-    ok(find('#outer-cont'));
+    hasContent(find("#slideid"), 1);
   });
 
 
@@ -31,7 +42,7 @@ define(['../../lib/app.js'], function(et) {
     }
   }
   test('has create app function', function() {
-    ok(et.frontend.hasOwnProperty(
+    ok(app.frontend.hasOwnProperty(
       'createApp'));
   });
 
@@ -40,7 +51,7 @@ define(['../../lib/app.js'], function(et) {
   });
 
   test('frontend has route that sets the slide id on the controller', function() {
-    equal(et.frontend.routeFuns.setupController(controller, {
+    equal(app.frontend.routeFuns.setupController(controller, {
       id: 1
     }).slide_id, 1);
   });
@@ -49,53 +60,55 @@ define(['../../lib/app.js'], function(et) {
 
 
   // use jasmine to run tests against the required code
-  module('Core');
+  module('Core', {
+    setup: function() {
+      // prepare something for all following tests
+      /* Event stream of all slide movements */
+      app.movements = ['right', 'left', 'right'];
 
-
-  /* Event stream of all slide movements */
-  et.movements = ['right', 'left', 'right'];
-
-  /* Slides */
-  et.slides = ['test', 'test2', 'test3'];
+      /* Slides */
+      app.slides = ['test', 'test2', 'test3'];
+    }
+  });
 
   test('has frontend', function() {
-    ok(et.hasOwnProperty(
+    ok(app.hasOwnProperty(
       'frontend'));
   });
 
   test('correct html', function() {
-    equal(et.slideController.getHtml(et.slides, et.slideView.slideIndex()), 'test2');
+    equal(app.slideController.getHtml(app.slides, app.slideView.slideIndex()), 'test2');
   });
 
   test('correct index', function() {
-    equal(et.slideController.getIndex(
-        et.slideView.movementFunctions()),
+    equal(app.slideController.getIndex(
+        app.slideView.movementFunctions()),
       1);
   });
 
   test('correct index with initial', function() {
-    equal(et.slideController.getIndex(
-        et.slideView.movementFunctions(), 2),
+    equal(app.slideController.getIndex(
+        app.slideView.movementFunctions(), 2),
       3);
   });
 
   test('view has movement functions', function() {
-    equal(et.slideView.movementFunctions()[0],
-      et.directions['right']);
+    equal(app.slideView.movementFunctions()[0],
+      app.directions['right']);
   });
 
   test('should have move functions', function() {
-    equal(et.slideController.movementFunctions(
-      et.movements, et.directions
-    )[0], et.directions['right']);
-    equal(et.slideController.movementFunctions(
-      et.movements, et.directions
-    )[1], et.directions['left']);
+    equal(app.slideController.movementFunctions(
+      app.movements, app.directions
+    )[0], app.directions['right']);
+    equal(app.slideController.movementFunctions(
+      app.movements, app.directions
+    )[1], app.directions['left']);
   });
 
   test('should have directions to move', function() {
-    ok(et.directions.hasOwnProperty('right'));
-    ok(et.directions.hasOwnProperty('left'));
+    ok(app.directions.hasOwnProperty('right'));
+    ok(app.directions.hasOwnProperty('left'));
   });
 
 });

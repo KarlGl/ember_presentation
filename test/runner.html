@@ -24,7 +24,6 @@
   <div id="qunit-fixture"></div>
 
   <script>
-  // QUnit.config.autostart = false;
   require(
     [
       '../node_modules/lodash/lodash',
@@ -35,7 +34,9 @@
       '../bower_components/qunit/qunit/qunit.js',
     ],
     function() {
-      // QUnit.start();
+      QUnit.config.autostart = false;
+      QUnit.start();
+
     });
   </script>
 
