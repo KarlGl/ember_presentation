@@ -51,6 +51,13 @@ define(['../../lib/app.js'], function(et) {
   // use jasmine to run tests against the required code
   module('Core');
 
+
+  /* Event stream of all slide movements */
+  et.movements = ['right', 'left', 'right'];
+
+  /* Slides */
+  et.slides = ['test', 'test2', 'test3'];
+
   test('has frontend', function() {
     ok(et.hasOwnProperty(
       'frontend'));
