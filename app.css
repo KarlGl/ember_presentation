@@ -1,3 +1,7 @@
-.ember-application {
+.ember-application #ember-talk {
   padding: 50px;
+}
+#ember-talk #mainslide {
+  margin-bottom: 2em;
+  padding-left: 3%;
 }
