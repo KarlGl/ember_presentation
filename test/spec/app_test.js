@@ -32,6 +32,7 @@ define(['../../lib/app.js'], function(app) {
     setupFrontend();
     visit('/1');
     hasContent(find("#slideid"), 1);
+    hasContent(find("#slidecontent"), 'test slide 2');
   });
 
 
