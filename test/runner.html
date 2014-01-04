@@ -3,16 +3,11 @@
 
 <head>
   <title>Test Runner</title>
-  <link rel="stylesheet" type="text/css" href="../vendor/jasmine/jasmine.css">
-  <script src="../vendor/jasmine/jasmine.js"></script>
-  <script src="../vendor/jasmine/jasmine-html.js"></script>
+  <link rel="stylesheet" type="text/css" href="../bower_components/qunit/qunit/qunit.css">
   <script>
   var require = {
     paths: {
       "app": "../lib/app",
-      "cs": "../vendor/cs",
-      "node_modules": "../node_modules",
-      "coffee-script": "../vendor/coffee-script"
     }
   }
   </script>
@@ -21,7 +16,11 @@
 
 <body>
 
+  <div id="qunit"></div>
+  <div id="qunit-fixture"></div>
+
   <script>
+  // QUnit.config.autostart = false;
   require(
     [
       '../node_modules/lodash/lodash',
@@ -29,10 +28,10 @@
       '../bower_components/jquery/jquery.js',
       '../bower_components/handlebars/handlebars.js',
       '../bower_components/ember/ember.js',
+      '../bower_components/qunit/qunit/qunit.js',
     ],
     function() {
-      jasmine.getEnv().addReporter(new jasmine.HtmlReporter());
-      jasmine.getEnv().execute();
+      // QUnit.start();
     });
   </script>
 

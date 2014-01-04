@@ -1,73 +1,75 @@
 // load the entire module/library and pass to the test
 define(['app'], function(et) {
 
+  module('Integration');
+  et.frontend.createApp(window);
 
-  describe('Integration', function() {
-    et.frontend.createApp(window);
-    it('loads our tests', function() {
-      expect(window.App).toNotBe(undefined);
-    });
+  // use my testing element on the runner.html page.
+  window.App.rootElement = '#frontend-integration-test';
+
+  // defer readiness
+  window.App.setupForTesting();
+
+  // gives you all the helper methods like "vistest".
+  window.App.injectTestHelpers();
+
+  QUnit.testStart(function() {
+    window.App.reset();
+  });
+
+  test('loads our tests', function() {
+    visit('/');
+    ok(true);
   });
 
 
-  describe('Ember related tests', function() {
-    it('has create app function', function() {
-      expect(et.frontend.hasOwnProperty(
-        'createApp')).toBe(true);
-    });
+  module('Frontend tests');
+  test('has create app function', function() {
+    ok(et.frontend.hasOwnProperty(
+      'createApp'));
+  });
 
-    it('loads Ember', function() {
-      expect(Ember).toNotBe(undefined);
-    });
+  test('loads Ember', function() {
+    notEqual(Ember, undefined);
   });
 
 
 
 
   // use jasmine to run tests against the required code
-  describe('Core', function() {
+  module('Core');
 
-    it('has frontend', function() {
-      expect(et.hasOwnProperty(
-        'frontend')).toBe(true);
-    });
+  test('has frontend', function() {
+    ok(et.hasOwnProperty(
+      'frontend'));
+  });
 
-    it('correct html', function() {
-      expect(et.slideController.getHtml(et.slides, et.slideView.slideIndex())).toEqual('test2');
-    });
+  test('correct html', function() {
+    equal(et.slideController.getHtml(et.slides, et.slideView.slideIndex()), 'test2');
+  });
 
-    it('correct index', function() {
-      expect(et.slideController.getIndex(
-        et.slideView.movementFunctions())).toEqual(1);
-    });
+  test('correct index', function() {
+    equal(et.slideController.getIndex(
+      et.slideView.movementFunctions()), 1);
+  });
 
-    it('view has movement functions', function() {
-      expect(et.slideView.movementFunctions()[0]).toEqual(
-        et.directions['right']);
-    });
+  test('view has movement functions', function() {
+    equal(et.slideView.movementFunctions()[0],
+      et.directions['right']);
+  });
 
-    it('should have move functions', function() {
-      expect(et.slideController.movementFunctions(
-        et.movements, et.directions
-      )[0]).toEqual(et.directions['right']);
-      expect(et.slideController.movementFunctions(
-        et.movements, et.directions
-      )[1]).toEqual(et.directions['left']);
-    });
+  test('should have move functions', function() {
+    equal(et.slideController.movementFunctions(
+      et.movements, et.directions
+    )[0], et.directions['right']);
+    equal(et.slideController.movementFunctions(
+      et.movements, et.directions
+    )[1], et.directions['left']);
+  });
 
-    it('should have directions to move', function() {
-      expect(et.directions.hasOwnProperty('left')).toBe(true);
-      expect(et.directions.hasOwnProperty('right')).toBe(true);
-    });
-
-    it('should be accessible from a varialbe', function() {
-      expect(et).toNotBe(null);
-    });
-
-    it('should return a VERSION', function() {
-      expect(et.VERSION).toNotBe(null);
-    });
-
+  test('should have directions to move', function() {
+    ok(et.directions.hasOwnProperty('right'));
+    ok(et.directions.hasOwnProperty('left'));
   });
 
 });

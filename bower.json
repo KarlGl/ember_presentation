@@ -1,0 +1,21 @@
+{
+  "name": "EmberTalk",
+  "version": "0.0.0",
+  "authors": [
+    "Karl Glaser <kg@papercloud.com.au>"
+  ],
+  "main": "lib/app.js",
+  "license": "MIT",
+  "private": true,
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "ember": "~1.2.0",
+    "qunit": "~1.12.0"
+  }
+}
