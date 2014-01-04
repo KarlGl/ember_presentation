@@ -20,6 +20,7 @@ body {
 #ember-talk .slide-item {
   display: inline-block;
   width: 256px;
-  height: 256px;
-  zoom: 0.3;
+  height: 128px;
+  zoom: 0.5;
+  font-size: 6px;
 }
