@@ -2,6 +2,14 @@
 define(['../../lib/app/ember_frontend.js'], function(app) {
   window.app = app;
 
+  QUnit.done(function() {
+    app.loadSlidesEmber(['test slide 1', 'test slide 2']);
+    app.loadMovementsEmber([0]);
+    Ember.run(function() {
+      testApp.App.Router.router.transitionTo('slide', 0)
+    });
+  });
+
   // testHelpers
   var hasContent = function(selector, content) {
     return ok(selector.text().indexOf(content) > 0, 'has content ' + content);
