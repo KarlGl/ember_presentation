@@ -40,7 +40,7 @@ define(['app'], function(et) {
   });
 
   test('frontend has route that sets the slide id on the controller', function() {
-    equal(et.frontend.route.setupController(controller, {
+    equal(et.frontend.routeFuns.setupController(controller, {
       id: 1
     }).slide_id, 1);
   });
