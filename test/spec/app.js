@@ -1,12 +1,25 @@
 // load the entire module/library and pass to the test
 define(['app'], function(et) {
 
+
   describe('Ember related tests', function() {
+    it('can create app', function() {
+      expect(et.frontend.hasOwnProperty(
+        'createApp')).toBe(true);
+    });
 
     it('loads Ember', function() {
       expect(Ember).toNotBe(undefined);
     });
   });
+
+
+
+
+
+
+
+
 
   // use jasmine to run tests against the required code
   describe('app', function() {
