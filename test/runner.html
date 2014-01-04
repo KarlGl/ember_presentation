@@ -27,16 +27,17 @@
   require(
     [
       '../node_modules/lodash/lodash',
-      'spec/app_test',
       '../bower_components/jquery/jquery.js',
       '../bower_components/handlebars/handlebars.js',
       '../bower_components/ember/ember.js',
       '../bower_components/qunit/qunit/qunit.js',
+      'spec/app_test',
     ],
     function() {
-      QUnit.config.autostart = false;
-      QUnit.start();
-
+      require(['spec/app_frontend_test'], function(app) {
+        QUnit.config.autostart = false;
+        QUnit.start();
+      });
     });
   </script>
 
