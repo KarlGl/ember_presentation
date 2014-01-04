@@ -16,6 +16,7 @@
   ],
   "dependencies": {
     "ember": "~1.2.0",
-    "qunit": "~1.12.0"
+    "qunit": "~1.12.0",
+    "requirejs": "~2.1.9"
   }
 }
