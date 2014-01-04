@@ -1,5 +1,5 @@
 // load the entire module/library and pass to the test
-define(['app'], function(et) {
+define(['../../lib/app.js'], function(et) {
 
   module('Integration');
   et.frontend.createApp(window);
