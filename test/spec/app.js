@@ -2,6 +2,14 @@
 define(['app'], function(et) {
 
 
+  describe('Integration', function() {
+    et.frontend.createApp(window);
+    it('loads our tests', function() {
+      expect(window.App).toNotBe(undefined);
+    });
+  });
+
+
   describe('Ember related tests', function() {
     it('can create app', function() {
       expect(et.frontend.hasOwnProperty(
