@@ -8,7 +8,7 @@ requirejs.config({
   nodeRequire: require,
   baseUrl: __dirname,
   paths: {
-    skeleton: '../lib/skeleton',
+    skeleton: '../lib/app',
     cs: '../vendor/cs'
   }
 });
@@ -22,8 +22,8 @@ global.it = require('../vendor/jasmine/jasmine').it;
 global.expect = require('../vendor/jasmine/jasmine').expect;
 
 // load specs
-fs.readdirSync(__dirname+'/spec').map(function(spec) {
-  requirejs([__dirname+'/spec/'+spec],function(spec){});
+fs.readdirSync(__dirname + '/spec').map(function(spec) {
+  requirejs([__dirname + '/spec/' + spec], function(spec) {});
 });
 
 // run em
