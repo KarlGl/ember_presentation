@@ -10,6 +10,7 @@ define(['../../lib/app/ember_frontend.js'], function(app) {
   module('Ember Integration', {
     setup: function() {
       app.loadSlidesEmber(['test slide 1', 'test slide 2']);
+      app.loadMovementsEmber([1]);
     }
   });
   window.testApp = {};
@@ -59,8 +60,9 @@ define(['../../lib/app/ember_frontend.js'], function(app) {
   });
 
   test('frontend has route that sets the slide id on the controller', function() {
-    equal(app.frontend.routeFuns.setupController(controller, {
+    app.frontend.routeFuns.setupController(controller, {
       id: 1
-    }).slide_id, 1);
+    });
+    equal(app.state.movements[0], 1);
   });
 });

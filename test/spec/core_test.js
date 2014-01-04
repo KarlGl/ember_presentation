@@ -5,7 +5,7 @@ define(['../../lib/app/core.js'], function(app) {
     setup: function() {
       // console.log('prepare something for all following tests');
       /* Event stream of all slide movements */
-      app.state.movements = ['right', 'left', 'right'];
+      app.state.movements = [1, 0, 1];
 
       /* Slides */
       app.loadSlides(['test', 'test2', 'test3']);
@@ -17,34 +17,8 @@ define(['../../lib/app/core.js'], function(app) {
   });
 
   test('correct index', function() {
-    equal(app.slideController.getIndex(
-        app.slideController.allMovementFunctions()),
+    equal(app.slideController.curSlideIndex(),
       1);
-  });
-
-  test('correct index with initial', function() {
-    equal(app.slideController.getIndex(
-        app.slideController.allMovementFunctions(), 2),
-      3);
-  });
-
-  test('has all movement functions', function() {
-    equal(app.slideController.allMovementFunctions()[0],
-      app.directions['right']);
-  });
-
-  test('should have move functions', function() {
-    equal(app.slideController.movementFunctions(
-      app.state.movements, app.directions
-    )[0], app.directions['right']);
-    equal(app.slideController.movementFunctions(
-      app.state.movements, app.directions
-    )[1], app.directions['left']);
-  });
-
-  test('should have directions to move', function() {
-    ok(app.directions.hasOwnProperty('right'));
-    ok(app.directions.hasOwnProperty('left'));
   });
 
 });

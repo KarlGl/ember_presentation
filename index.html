@@ -28,8 +28,8 @@
         window.apps = [app];
         QUnit.config.autostart = false;
         // Shortcut.
-        window.mainApp = window.apps[0];
-        app.frontend.createApp(mainApp);
+        window.app = window.apps[0];
+        app.frontend.createApp(app);
         // QUnit.start();
 
         require(['./slides.js'], function(slides) {
