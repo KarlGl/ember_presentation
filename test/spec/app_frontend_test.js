@@ -63,7 +63,7 @@ define(['../../lib/app/ember_frontend.js'], function(app) {
     setupFrontend();
     // goto url for first slide.
     visit('/0');
-    // Make sure all assertions run in the wait promise.
+    // Make sure all 6 assertions run.
     expect(6);
     // has content of first slide.
     hasContent(find("#slidecontent"), 'test slide 1');
@@ -72,8 +72,7 @@ define(['../../lib/app/ember_frontend.js'], function(app) {
     ok(!find(".slide-item-cont").last().hasClass('active'),
       '2nd slide will be inactive.');
 
-    click('.slide-item-cont:last');
-    wait().then(function() {
+    click('.slide-item-cont:last').then(function() {
       hasContent(find("#slidecontent"), 'test slide 2');
       ok(find(".slide-item-cont").last().hasClass('active'),
         '2nd slide will be active.');
@@ -120,7 +119,7 @@ define(['../../lib/app/ember_frontend.js'], function(app) {
     notEqual(Ember, undefined);
   });
 
-  test('frontend has route that sets the slide id on the controller', function() {
+  test('frontend route sets the slide id on the controller from arguments', function() {
     app.frontend.routeFuns.setupController(controller, {
       id: 1
     });

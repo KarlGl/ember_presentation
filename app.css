@@ -2,6 +2,9 @@ body {
   background-color: black;
   color: white;
 }
+b {
+  color: rgb(255, 0, 194);
+}
 pre {
   text-align: left;
 }

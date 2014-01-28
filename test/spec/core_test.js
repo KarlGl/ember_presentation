@@ -11,11 +11,11 @@ define(['../../lib/app/core.js'], function(app) {
     }
   });
 
-  test('correct html', function() {
-    equal(app.slideController.getHtml(env.slides, app.slideController.getLastIndex(env.movements)), 'test2');
+  test('correct html returned from the movements and slides', function() {
+    equal(app.slideController.getHtml(env.slides, app.slideController.getLastIndex(env.movements)), env.slides[1]);
   });
 
-  test('correct index', function() {
+  test('correct index is found in the movements', function() {
     equal(app.slideController.getLastIndex(env.movements),
       1);
   });
